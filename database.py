@@ -1,16 +1,8 @@
-import os
+# backend/database.py
 import sqlite3
 
 def get_connection():
-    # Check if we are in a Render environment (where the database should be in persistent storage)
-    if 'RENDER' in os.environ:
-        # Use the persistent disk path provided by Render (e.g., `/var/lib/render/db/`)
-        db_path = '/var/lib/render/db/invigilation.db'
-    else:
-        # Local environment (use current working directory)
-        db_path = 'invigilation.db'
-    
-    conn = sqlite3.connect(db_path, check_same_thread=False)
+    conn = sqlite3.connect("invigilation.db", check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 
